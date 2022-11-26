@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+    <title>Image Uploader</title>
+</head>
+<body>
+    <header>Image Uploader</header>
+    <main>
+        <form method="post" action="/api/v1/images" enctype="multipart/form-data" >
+            <div class="custom-file mb-3">
+                <input type="file" name="image" id="file" class="custom-file-input">
+                <label for="image" class="custom-file-label">Choose File</label>
+              </div>
+            <input type="submit">
+        </form>
+        <div class="gallery">
+            <% if(files) { %>
+                <% files.forEach(function(file) { %>
+                    <img src="api/v1/images/<%= file.filename %>" alt="">
+                <% }) %>
+            <% } else { %>
+                <h4>Your Gallery is empty</h4>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>
